@@ -1,0 +1,13 @@
+# Local data and results (not part of the repository)
+Datasets/
+Results/
+
+# MATLAB autosave and cache files
+*.asv
+*.m~
+slprj/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+desktop.ini
