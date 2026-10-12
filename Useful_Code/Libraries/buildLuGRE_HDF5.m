@@ -242,7 +242,7 @@ for iop = 1:numel(ops)
             % 1-D series
             h5vec(outFile,[base '/body/roti'],           obs(id).ROTI(idxWin),        'TECU/s');
             h5vec(outFile,[base '/body/rot'],            obs(id).ROT(idxWin),         'TECU/s');
-            h5vec(outFile,[base '/body/stec_levelled'],  obs(id).smoothedTEC(idxWin), 'TECU');
+            h5vec(outFile,[base '/body/stec_levelled'],  obs(id).leveledTEC(idxWin), 'TECU');
             h5vec(outFile,[base '/body/stec_phase'],     obs(id).STEC_phase(idxWin),  'TECU');
             h5vec(outFile,[base '/body/stec_code'],      obs(id).STEC_code(idxWin),   'TECU');
             h5vec(outFile,[base '/body/grazing_altitude'],obs(id).grazingAltitude(idxWin), opts.grazUnits);

@@ -1,15 +1,13 @@
 function obsSolutions = STECleveling(obsSolutions,limit, epochDate, settings,varargin)
-%SMOOTHTEC  Carrier-phase smoothing of slant TEC measurements
-%
-%   obsSolutions = SmoothTEC(obsSolutions)
+%   Carrier-phase leveling of slant TEC measurements
 %
 %   This function applies a recursive carrier-phase leveling algorithm
-%   to smooth slant TEC measurements. The method combines:
+%   to leveled slant TEC measurements. The method combines:
 %
 %       - Code-derived TEC  (STEC_code)
 %       - Phase-derived TEC (STEC_phase)
 %
-%   The smoothing is based on the recursive averaging of the difference:
+%   The leveling is based on the recursive averaging of the difference:
 %
 %       DeltaSTEC = STEC_code - STEC_phase
 %
@@ -32,7 +30,7 @@ function obsSolutions = STECleveling(obsSolutions,limit, epochDate, settings,var
 %
 %   OUTPUT:
 %       obsSolutions  Updated struct with:
-%           .smoothedTEC  Carrier-smoothed slant TEC
+%           .leveledTEC  Carrier-leveled slant TEC
 %
 %   The output vectors preserve the original length and time alignment.
 %
@@ -53,7 +51,7 @@ function obsSolutions = STECleveling(obsSolutions,limit, epochDate, settings,var
 % -------------------------------------------------------------------------
 
 % --- Command Window Log
-fprintf('-> Computing Smoothed Slant Total Electron Content - Smoothed STEC...\n')
+fprintf('-> Computing leveled Slant Total Electron Content - leveled STEC...\n')
 
 %--- Channels and Epochs
 numChannel = length(obsSolutions);                % Number of tracking channels (satellites/frequencies)
@@ -74,7 +72,7 @@ end
 t_gap = settings.t_gap;
 
 %% -------------------------------------------------------------------
-% SMOOTHING CHANNEL BY CHANNEL
+% LEVELING CHANNEL BY CHANNEL
 % --------------------------------------------------------------------
 for ii = 1:numChannel                             % Loop over each satellite channel
 
@@ -83,7 +81,7 @@ for ii = 1:numChannel                             % Loop over each satellite cha
     end
     
     % Preallocate output vector for safety and speed
-    obsSolutions(ii).smoothedTEC = NaN(1,numEpochs);
+    obsSolutions(ii).leveledTEC = NaN(1,numEpochs);
     
     % Compute code-phase TEC difference (DeltaSTEC)
     DeltaSTEC = obsSolutions(ii).STEC_code - ...
@@ -103,8 +101,8 @@ for ii = 1:numChannel                             % Loop over each satellite cha
         
         % Check if phase measurement is valid
         if isnan(obsSolutions(ii).STEC_phase(jj))
-            % If phase is invalid, smoothed TEC cannot be computed
-            obsSolutions(ii).smoothedTEC(jj) = NaN;
+            % If phase is invalid, leveled TEC cannot be computed
+            obsSolutions(ii).leveledTEC(jj) = NaN;
         else
             newObs = jj;
         end
@@ -136,11 +134,11 @@ for ii = 1:numChannel                             % Loop over each satellite cha
             %   - Keep previous offset
         end
         
-        % Compute smoothed TEC if offset is valid
+        % Compute leveled TEC if offset is valid
         if ~isnan(offset)
-            obsSolutions(ii).smoothedTEC(jj) = obsSolutions(ii).STEC_phase(jj) + offset;
+            obsSolutions(ii).leveledTEC(jj) = obsSolutions(ii).STEC_phase(jj) + offset;
         else
-            obsSolutions(ii).smoothedTEC(jj) = NaN;
+            obsSolutions(ii).leveledTEC(jj) = NaN;
         end
         
         lastObs = newObs;
@@ -153,12 +151,12 @@ end
 % PLOT ROT TIME SERIES
 % -----------------------------------------------------------------------
 
-plotSwitch = settings.PlotSTECsmooth;
+plotSwitch = settings.PlotSTECleveled;
 
 if plotSwitch
 
     h = figure();
-    figurename = 'smoothedSlantTEC';
+    figurename = 'leveledSlantTEC';
     set(h,'Name',figurename);
     hold on;
 
@@ -170,7 +168,7 @@ if plotSwitch
         end
         svID = obsSolutions(prnIdx(1,i)).SV;
         RGBcolor = PRNColors(svID);
-        plot(time,obsSolutions(prnIdx(1,i)).smoothedTEC(timeIdx),'Color',RGBcolor,'MarkerSize', 2,'DisplayName',append(svID," ",obsSolutions(prnIdx(1,i)).band,"+",obsSolutions(prnIdx(2,i)).band),'LineWidth',2);
+        plot(time,obsSolutions(prnIdx(1,i)).leveledTEC(timeIdx),'Color',RGBcolor,'MarkerSize', 2,'DisplayName',append(svID," ",obsSolutions(prnIdx(1,i)).band,"+",obsSolutions(prnIdx(2,i)).band),'LineWidth',2);
     end
 
     xlabel('Time','Interpreter','latex');
@@ -202,12 +200,12 @@ if plotSwitch
     hLeg.ItemHitFcn = @action1;
 
     %--- Place on screen
-    title("RINEX Obs - Smoothed Slant TEC",'Interpreter','latex');
+    title("RINEX Obs - leveled Slant TEC",'Interpreter','latex');
     Pix_SS = get(0,'screensize');
     h.OuterPosition = [Pix_SS(3)/2 0 Pix_SS(3)/2 Pix_SS(4)/2];
 end
 
 % --- Command Window Log
-fprintf('Smoothed STEC computation ended. \n\n')
+fprintf('Leveled STEC computation ended. \n\n')
 
 end

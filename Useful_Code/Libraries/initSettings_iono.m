@@ -21,7 +21,7 @@ function settings = initSettings_iono(jj)
 %   VERSION HISTORY:
 %       1.0 - 10/03/2026 - Initial release: dataset path, time window,
 %             constellation selection, CN0 threshold, arc restoration,
-%             smoothing gap, and ROTI processing parameters.
+%             leveling gap, and ROTI processing parameters.
 %       2.0 - 13/04/2026 - Added eventIDv2 classification parameters:
 %             MAX_TANGENT_GAP_S, OCC_GAP_S, PEAK_EDGE_TOL,
 %             MEAN_THRESHOLD, MIN_DURATION.
@@ -142,7 +142,7 @@ settings.CN0_threshold = 20; % Minimum C/N0 threshold (dB-Hz) for usable observa
 settings.arcRestore = true; % Fills the ROTI arcs gaps with interpolated values
 
 %% --- FILTER / PROCESSING PARAMETERS
-settings.t_gap = 10; % Maximum allowed observation gap (seconds) before smoothing filter reinitialization
+settings.t_gap = 10; % Maximum allowed observation gap (seconds) before leveling filter reinitialization
 
 %% --- ROTI PROCESSING PARAMETERS
 settings.ROTI_window = 'fixed'; % length of the window over which is computed the ROTI 
@@ -204,7 +204,7 @@ settings.PlotCN0                            = true;
 % settings.PlotS4c                            = true; %S - not yet implemented future developments
 settings.PlotSTECphase                      = true;
 settings.PlotSTECcode                       = true;
-settings.PlotSTECsmooth                     = true;
+settings.PlotSTECleveled                    = true;
 settings.PlotROT                            = true;
 settings.PlotROTI                           = true;
 settings.PlotROTI_restored                  = true;

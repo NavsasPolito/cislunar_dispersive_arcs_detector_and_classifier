@@ -486,7 +486,7 @@ All user parameters are set in `Useful_Code/Libraries/initSettings_iono.m`, whic
 
 | Parameter | Description |
 |---|---|
-| `settings.t_gap` | Maximum observation gap (s) before the smoothing filter is re-initialised. |
+| `settings.t_gap` | Maximum observation gap (s) before the leveling filter is re-initialised. |
 | `settings.ROTI_window` | `'fixed'`: ROTI is computed over a window of fixed length `settings.window_length`. (`'variable'` is reserved for a future development.) |
 | `settings.window_length` | Length (s) of the ROTI window. |
 | `settings.tol_window` | Tolerance on missing samples inside the ROTI window (fraction of the window). |
@@ -508,7 +508,7 @@ All user parameters are set in `Useful_Code/Libraries/initSettings_iono.m`, whic
 
 | Parameter | Description |
 |---|---|
-| `settings.PlotCN0`, `PlotSTECphase`, `PlotSTECcode`, `PlotSTECsmooth`, `PlotROT`, `PlotROTI`, `PlotROTI_restored`, `PlotVisibility`, `PlotGrazingAltitude`, `PlotGrazingAltitudeArcs`, `PlotGrazingAltitudeDistribution` | Enable (`true`) or disable (`false`) each figure. Figures are saved in `Results/<OP>/`. |
+| `settings.PlotCN0`, `PlotSTECphase`, `PlotSTECcode`, `PlotSTECleveled`, `PlotROT`, `PlotROTI`, `PlotROTI_restored`, `PlotVisibility`, `PlotGrazingAltitude`, `PlotGrazingAltitudeArcs`, `PlotGrazingAltitudeDistribution` | Enable (`true`) or disable (`false`) each figure. Figures are saved in `Results/<OP>/`. |
 | `settings.opts.cataloguePath` | Aggregated catalogue used to build the HDF5 file. |
 | `settings.opts.missionStart`, `settings.opts.missionEnd` | Mission time span written in the HDF5 header (`dd-MM-yyyy-HH:mm:ss`, UTC). |
 | `settings.opts.DOI` | DOI written in the HDF5 header. |
@@ -531,7 +531,7 @@ These are the values in `initSettings_iono.m` that generated the catalogue with 
 | | `settings.E` | `1` (Galileo on) | — |
 | Signal quality | `settings.CN0_threshold` | `20` | dB-Hz |
 | ROTI restoration | `settings.arcRestore` | `true` | — |
-| Smoothing | `settings.t_gap` | `10` | s |
+| Leveling | `settings.t_gap` | `10` | s |
 | ROTI | `settings.ROTI_window` | `'fixed'` | — |
 | | `settings.window_length` | `30` (`10*3`) | s |
 | | `settings.tol_window` | `0.1` | fraction |
