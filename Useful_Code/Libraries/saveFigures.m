@@ -37,6 +37,9 @@ saveDir = picFolder;
 
 % Find all open figures
 figs = findobj('Type','figure');
+if isempty(figs)
+    return
+end
 figNums = [figs.Number];
 
 for k = min(figNums):max(figNums)

@@ -59,8 +59,8 @@ function buildLuGRE_HDF5(rootDir, settings)
 % -------------------------------------------------------------------------
 
 % ===================== DEFAULTS =========================================
-if nargin < 1 || isempty(rootDir),              rootDir = uigetdir(pwd, 'Select the Ionosphere_characterization_LuGRE path'); end
-if nargin < 2 || isempty(settings.resultPath),  outFile = fullfile(rootDir,'Results','LuGRE_dispersive_arcs12.h5'); else, outFile = fullfile(settings.resultPath,'LuGRE_dispersive_arcs12.h5'); end
+if nargin < 1 || isempty(rootDir),              rootDir = uigetdir(pwd, 'Select the root path'); end
+if nargin < 2 || isempty(settings.resultPath),  outFile = fullfile(rootDir,'Results','LuGRE_dispersive_arcs.h5'); else, outFile = fullfile(settings.resultPath,'LuGRE_dispersive_arcs.h5'); end
 if isempty(settings.opts),        settings.opts = struct(); else, opts=settings.opts; end
 
 def = struct('cataloguePath','', 'missionYear',2025, 'missionStart',"15-01-2025", ...

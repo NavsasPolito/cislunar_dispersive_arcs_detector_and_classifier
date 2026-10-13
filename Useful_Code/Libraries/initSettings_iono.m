@@ -61,7 +61,7 @@ settings.datasetsPath = fullfile(settings.rootPath, 'Datasets');
 settings.inputPath    = fullfile(settings.datasetsPath, settings.OP, 'RTP', 'SupportData');
 
 % --- OPTABLE path
-settings.opTablePath = fullfile(settings.datasetsPath,'OP TABLE.csv');
+settings.opTablePath = fullfile(settings.datasetsPath,'OPTABLE.csv');
 
 % --- kp table path
 settings.kpTablePath = fullfile(settings.datasetsPath,'Kp_ap_since_1932.txt'); 

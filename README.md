@@ -126,7 +126,7 @@ The pipeline expects **one root folder** that contains three folders: `Useful_Co
 Clone this repository. The cloned folder is the root folder `<ROOT>` and already contains `Useful_Code`:
 
 ```bash
-git clone https://github.com/<owner>/cislunar_dispersive_arcs_detector_and_classifier.git
+git clone https://github.com/NavsasPolito/cislunar_dispersive_arcs_detector_and_classifier.git
 ```
 
 If you download the repository as a ZIP file instead, extract it anywhere: the extracted folder is the root folder.

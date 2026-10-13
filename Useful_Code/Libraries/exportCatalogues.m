@@ -26,15 +26,11 @@ function T = exportCatalogues(resultsRoot, outDir, missionCSV)
 
 %% 0. Defaults
 if nargin<1||isempty(resultsRoot)
-    resultsRoot = fullfile('/Users/francescofiorina/Library/CloudStorage', ...
-        'OneDrive-PolitecnicodiTorino/FrancescoFiorina/PhD', ...
-        'Works_OnGoing/Ionosphere_characterization_LuGRE/Results');
+    resultsRoot = uigetdir('Result path missing: choose your result path');
 end
 if nargin<2||isempty(outDir),    outDir = resultsRoot; end
 if nargin<3||isempty(missionCSV)
-    dataRoot = fullfile('/Users/francescofiorina/Library/CloudStorage', ...
-        'OneDrive-PolitecnicodiTorino/FrancescoFiorina/PhD', ...
-        'Works_OnGoing/Ionosphere_characterization_LuGRE/Datasets');
+    dataRoot = uigetdir('Dataset path missing: choose your dataset path');
     missionCSV = fullfile(dataRoot, 'OPTABLE.csv');
     % If not found next to Results, try inside Useful_Code
     if ~isfile(missionCSV)
