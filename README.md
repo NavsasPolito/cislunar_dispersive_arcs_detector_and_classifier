@@ -1,4 +1,5 @@
-# LuGRE dispersive-arc catalogue: processing code
+# LuGRE dispersive-arc catalogue: processing code [![DOI](https://zenodo.org/badge/1409921615.svg)](https://doi.org/10.5281/zenodo.23330532)
+
 
 [![Dataset DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23216092.svg)](https://doi.org/10.5281/zenodo.23216092)
 [![LuGRE mission data DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16411687.svg)](https://doi.org/10.5281/zenodo.16411687)
